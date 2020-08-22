@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 /**
@@ -9,7 +10,7 @@ internal class Problem4Test() {
   
   lateinit var problem4: Problem4
   
-  @org.junit.jupiter.api.BeforeEach
+  @BeforeEach
   fun setUp() {
     problem4 = Problem4()
   }
