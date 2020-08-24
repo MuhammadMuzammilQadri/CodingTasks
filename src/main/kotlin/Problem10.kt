@@ -1,3 +1,4 @@
+import kotlin.math.absoluteValue
 import kotlin.math.sqrt
 
 /**
@@ -23,30 +24,64 @@ fun main(args: Array<String>) {
   
 }
 
-class Problem10 {
-  fun solve(number: Int): Long {
-    var sumOfPrimes = 0L
-    if (number > 1) sumOfPrimes += 2
-    for (primeCandidate in 3..number step 2) {
-      if (isPrime(primeCandidate)) {
-        sumOfPrimes += primeCandidate
+class Problem10() {
+  val PRIMES_LIST: List<Int>
+  val SUM_OF_PRIMES_LIST: List<Int>
+  
+  init {
+    PRIMES_LIST = createPrimesList(1000_000)
+    SUM_OF_PRIMES_LIST = createSumOfPrimesList()
+  }
+  
+  fun solve(number: Int): Int {
+    if (number == 1) return 0
+    return PRIMES_LIST.binarySearch(number).let {
+      if (it >= 0) {
+        SUM_OF_PRIMES_LIST[it]
+      } else {
+        SUM_OF_PRIMES_LIST[(it + 2).absoluteValue]
       }
     }
-    
-    return sumOfPrimes
   }
   
   fun isPrime(number: Int): Boolean {
-    if (number == 1 || number == 0) return false
-    if (number == 2) return true
-    if (number % 2 == 0) return false
-    
-    val upperLimit = sqrt(number.toDouble()).toInt()
-    for (divisor in 3..upperLimit step 2) {
-      if (number % divisor == 0) {
-        return false
+    return PRIMES_LIST.binarySearch(number) >= 0
+  }
+  
+  fun createSumOfPrimesList(): List<Int> {
+    return mutableListOf<Int>().apply {
+      for (i in PRIMES_LIST.indices) {
+        var sum = 0
+        for (j in 0..i) {
+          sum += PRIMES_LIST[j]
+        }
+        add(sum)
       }
     }
-    return true
+  }
+  
+  fun createPrimesList(until: Int): List<Int> {
+    val primesList: MutableList<Int> = mutableListOf<Int>().apply {
+      for (i in 2..until) {
+        add(i)
+      }
+    }
+    
+    var outerIndex = 0;
+    while (outerIndex < primesList.size) {
+      val step = primesList[outerIndex]
+      if (step != -1) {
+        var innerIndex = outerIndex + step
+        while (innerIndex < primesList.size) {
+          primesList.set(innerIndex, -1)
+          innerIndex += step
+        }
+      }
+      outerIndex++
+    }
+    
+    primesList.removeAll { value -> value == -1 }
+    
+    return primesList
   }
 }
