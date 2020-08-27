@@ -26,14 +26,14 @@ fun main(args: Array<String>) {
 
 class Problem10() {
   val PRIMES_LIST: List<Int>
-  val SUM_OF_PRIMES_LIST: List<Int>
+  val SUM_OF_PRIMES_LIST: List<Long>
   
   init {
     PRIMES_LIST = createPrimesList(1000_000)
     SUM_OF_PRIMES_LIST = createSumOfPrimesList()
   }
   
-  fun solve(number: Int): Int {
+  fun solve(number: Int): Long {
     if (number == 1) return 0
     return PRIMES_LIST.binarySearch(number).let {
       if (it >= 0) {
@@ -44,18 +44,14 @@ class Problem10() {
     }
   }
   
-  fun isPrime(number: Int): Boolean {
-    return PRIMES_LIST.binarySearch(number) >= 0
-  }
-  
-  fun createSumOfPrimesList(): List<Int> {
-    return mutableListOf<Int>().apply {
+  fun createSumOfPrimesList(): List<Long> {
+    return mutableListOf<Long>().apply {
       for (i in PRIMES_LIST.indices) {
-        var sum = 0
-        for (j in 0..i) {
-          sum += PRIMES_LIST[j]
+        if (i == 0) {
+          add(PRIMES_LIST[0].toLong())
+        } else {
+          add(get(i - 1) + PRIMES_LIST[i])
         }
-        add(sum)
       }
     }
   }

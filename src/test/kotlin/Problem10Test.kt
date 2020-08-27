@@ -1,8 +1,5 @@
+import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle
 
 /**
@@ -15,13 +12,45 @@ internal class Problem10Test() {
   
   @BeforeAll
   fun setUp() {
+    val start = System.currentTimeMillis()
     problem10 = Problem10()
+    val initializingEndTime = System.currentTimeMillis()
+    if (initializingEndTime - start > 500) {
+      fail("Too much time taken in initializing, time take: " +
+           "${initializingEndTime - start} milliseconds")
+    }
+  }
+  
+  @Test
+  fun maximumConstraintTest() {
+    val start = System.currentTimeMillis()
+    
+    var input = 1000_000
+    for (i in 1..10000) {
+      problem10.solve(input--)
+    }
+    
+    val testsEndTime = System.currentTimeMillis()
+    if (testsEndTime - start >= 2000) {
+      fail("Too much time taken in completing tests, time take: " +
+           "${testsEndTime - start} milliseconds")
+    } else {
+      assert(true)
+    }
   }
   
   @Test
   fun createPrimesList() {
-    assertEquals("2, 3, 5, 7, 11, 13, 17, 19, 23, 29",
-                 problem10.PRIMES_LIST.subList(0, 10).joinToString())
+    assertEquals("2", problem10.PRIMES_LIST[0].toString())
+    assertEquals("3", problem10.PRIMES_LIST[1].toString())
+    assertEquals("5", problem10.PRIMES_LIST[2].toString())
+    assertEquals("7", problem10.PRIMES_LIST[3].toString())
+    assertEquals("11", problem10.PRIMES_LIST[4].toString())
+    assertEquals("13", problem10.PRIMES_LIST[5].toString())
+    assertEquals("17", problem10.PRIMES_LIST[6].toString())
+    assertEquals("19", problem10.PRIMES_LIST[7].toString())
+    assertEquals("23", problem10.PRIMES_LIST[8].toString())
+    assertEquals("29", problem10.PRIMES_LIST[9].toString())
   }
   
   @Test
@@ -37,19 +66,5 @@ internal class Problem10Test() {
     assertEquals(2, problem10.solve(2))
     assertEquals(5, problem10.solve(3))
     assertEquals(0, problem10.solve(1))
-  }
-  
-  @Test
-  fun isPrime() {
-    assertEquals(true, problem10.isPrime(2))
-    assertEquals(true, problem10.isPrime(3))
-    assertEquals(true, problem10.isPrime(5))
-    assertEquals(true, problem10.isPrime(11))
-    assertEquals(true, problem10.isPrime(43))
-    
-    assertEquals(false, problem10.isPrime(1))
-    assertEquals(false, problem10.isPrime(9))
-    assertEquals(false, problem10.isPrime(6))
-    assertEquals(false, problem10.isPrime(39))
   }
 }
