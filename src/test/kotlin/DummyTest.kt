@@ -6,18 +6,17 @@ import org.junit.jupiter.api.Test
 /**
  * Created by Muzammil on 22-Aug-20.
  */
-internal class Problem5Test() {
+internal class DummyTest() {
   
-  lateinit var problem5: Problem5
+  lateinit var dummy: Solution
   
   @BeforeEach
   fun setUp() {
-    problem5 = Problem5()
+    dummy = Solution()
   }
   
   @Test
   fun testCases() {
-    assertEquals(6, problem5.solve(3))
-    assertEquals(2520, problem5.solve(10))
+    assertEquals(intArrayOf(3), dummy.solve(3))
   }
 }
