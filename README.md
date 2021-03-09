@@ -1,2 +1,4 @@
-# ProjectEuler
-Contains solutions for all medium rank problems of ProjectEuler (In-progress)
+# CodingTasks
+(In-progress) 
+Contains solutions for problems given in the following link: 
+https://leetcode.com/problemset/top-interview-questions/
