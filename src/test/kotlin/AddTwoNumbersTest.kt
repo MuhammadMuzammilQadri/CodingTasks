@@ -16,7 +16,7 @@ internal class AddTwoNumbersTest {
   
   @Test
   fun createValidListNode() {
-    val ln = problem.createListNode("123")
+    val ln = ListNode.createListNode("123")
     assertEquals(1, ln?.`val`)
     assertEquals(2, ln?.next?.`val`)
     assertEquals(3, ln?.next?.next?.`val`)
@@ -24,23 +24,23 @@ internal class AddTwoNumbersTest {
   
   @Test
   fun computeNumberFromListNode() {
-    assertEquals(321, problem.computeNumber(problem.createListNode("123")))
-    assertEquals(106, problem.computeNumber(problem.createListNode("601")))
-    assertEquals(900, problem.computeNumber(problem.createListNode("009")))
-    assertEquals(70, problem.computeNumber(problem.createListNode("07")))
+    assertEquals(321, problem.computeNumber(ListNode.createListNode("123")))
+    assertEquals(106, problem.computeNumber(ListNode.createListNode("601")))
+    assertEquals(900, problem.computeNumber(ListNode.createListNode("009")))
+    assertEquals(70, problem.computeNumber(ListNode.createListNode("07")))
   }
   
   @Test
   fun addTwoLists() {
-    assertEquals(problem.computeNumber(problem.createListNode("579")),
+    assertEquals(problem.computeNumber(ListNode.createListNode("579")),
                  problem.computeNumber(
-                   problem.addTwoNumbers(problem.createListNode("123"),
-                                         problem.createListNode("456"))))
+                   problem.addTwoNumbers(ListNode.createListNode("123"),
+                                         ListNode.createListNode("456"))))
     
     
-    assertEquals(problem.computeNumber(problem.createListNode("6640000000000000000000000000001")),
+    assertEquals(problem.computeNumber(ListNode.createListNode("6640000000000000000000000000001")),
                  problem.computeNumber(
-                   problem.addTwoNumbers(problem.createListNode("1000000000000000000000000000001"),
-                                         problem.createListNode("564"))))
+                   problem.addTwoNumbers(ListNode.createListNode("1000000000000000000000000000001"),
+                                         ListNode.createListNode("564"))))
   }
 }
