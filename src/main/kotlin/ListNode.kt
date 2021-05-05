@@ -1,3 +1,5 @@
+import java.lang.StringBuilder
+
 /**
  * Created by Muzammil on 3/9/21.
  */
@@ -18,6 +20,20 @@ class ListNode(var `val`: Int) {
       _other = _other?.next
       
       if (current == null && _other == null) return true
+    }
+  }
+  
+  override fun toString(): String {
+    StringBuilder().let { sb ->
+      var node: ListNode? = this
+      while (node != null) {
+        sb.append(node.`val`)
+        node = node.next
+        if (node != null) {
+          sb.append(", ")
+        }
+      }
+      return sb.toString()
     }
   }
   
