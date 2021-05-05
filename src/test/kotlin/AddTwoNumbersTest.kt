@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.math.BigInteger
 
 /**
  * Created by Muzammil on 3/9/21.
@@ -24,10 +25,10 @@ internal class AddTwoNumbersTest {
   
   @Test
   fun computeNumberFromListNode() {
-    assertEquals(321, problem.computeNumber(ListNode.createListNode("123")))
-    assertEquals(106, problem.computeNumber(ListNode.createListNode("601")))
-    assertEquals(900, problem.computeNumber(ListNode.createListNode("009")))
-    assertEquals(70, problem.computeNumber(ListNode.createListNode("07")))
+    assertEquals(BigInteger.valueOf(321), problem.computeNumber(ListNode.createListNode("123")))
+    assertEquals(BigInteger.valueOf(106), problem.computeNumber(ListNode.createListNode("601")))
+    assertEquals(BigInteger.valueOf(900), problem.computeNumber(ListNode.createListNode("009")))
+    assertEquals(BigInteger.valueOf(70), problem.computeNumber(ListNode.createListNode("07")))
   }
   
   @Test
