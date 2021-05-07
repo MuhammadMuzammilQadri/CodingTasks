@@ -1,7 +1,8 @@
 class MergeTwoSortedLists {
-  lateinit var mergedList: ListNode
-  lateinit var mergedListCounter: ListNode
   fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {
+    
+    var mergedList: ListNode? = null
+    var mergedListCounter: ListNode? = null
     var l1Counter = l1
     var l2Counter = l2
     
@@ -18,7 +19,7 @@ class MergeTwoSortedLists {
         l2Counter = l2Counter.next
       }
       
-      if (::mergedList.isInitialized) {
+      if (mergedList != null && mergedListCounter != null) {
         mergedListCounter.next = ListNode(nextNode.`val`)
         mergedListCounter = mergedListCounter.next!!
       } else {
@@ -30,12 +31,12 @@ class MergeTwoSortedLists {
         mergedListCounter.next = l2Counter
         return mergedList
       }
-  
+      
       if (l2Counter == null && l1Counter != null) {
         mergedListCounter.next = l1Counter
         return mergedList
       }
-  
+      
       if (l2Counter == null && l1Counter == null) {
         return mergedList
       }

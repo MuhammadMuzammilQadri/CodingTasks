@@ -19,7 +19,7 @@ internal class MergeTwoSortedListsTest() {
                  problem.mergeTwoLists(
                    ListNode.createListNode(arrayOf(1, 2, 3)),
                    ListNode.createListNode(arrayOf(4, 5))).toString())
-    assertEquals(ListNode.createListNode(arrayOf(1, 1, 2, 3, 4)).toString(),
+    assertEquals(ListNode.createListNode(arrayOf(1, 1, 2, 3, 4, 4)).toString(),
                  problem.mergeTwoLists(
                    ListNode.createListNode(arrayOf(1, 2, 4)),
                    ListNode.createListNode(arrayOf(1, 3, 4))).toString())
